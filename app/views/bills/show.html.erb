@@ -1,0 +1,13 @@
+<h1>Bill Show Page</h1>
+Bill ID: <%= @bill.id %>
+<br>
+User ID: <%= @bill.user_id %>
+<br>
+Bill Name: <%= @bill.name %>
+<br>
+<% unless @bill.description.blank? %>
+	Bill Description: <%= @bill.description %>
+<% end %>
+<br>
+
+<%= link_to "Back to the index", root_url %>

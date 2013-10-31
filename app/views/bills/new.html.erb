@@ -1,0 +1,31 @@
+<div align="right">Create Account | Login</div>
+<br>
+
+<h2>Keep track of group expenses with IOU:</h2>
+<ol>
+	<li>Add a new bill.</li>
+	<li>List your friends who were part of the bill.</li>
+	<li>Select if you want to split evenly or split by exact amounts.</li>
+	<li>IOU will show who owes what amount to whom.</li>
+</ol>
+So easy!
+<h2>Add a Bill</h2>
+<form action="<%= bills_url %>" method="post">
+	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+	<input type="text" id="name" name="bill[name]" value="<%= @bill.name %>" placeholder="Bill Name"> ?
+	<br>
+	<input type="text" id="description" name="bill[description]" value="<%= @bill.description %>" placeholder="Bill Description (optional)"> ?
+	<br>
+
+	<input type="submit" value="Add Bill"> ?
+</form>
+
+<br>
+<br>
+Other features:
+<ul>
+	<li>Edit your bills.</li>
+	<li>View payment history.</li>
+	<li>Keep track of payments to friends.</li>
+</ul>
