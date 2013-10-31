@@ -1,1 +1,13 @@
 <h1>Login - New Session</h1>
+
+<form action="<%= session_index_url %>" method="post">
+	<label>Email: <input type="text" name="user[email]" /></label>
+	<br>
+	<label>Password: <input type="password" name="user[password]" /></label>
+	<br>
+	<input type="submit" value="Login" />
+</form>
+
+<br>
+Don't have an account? <%= link_to "Sign Up", new_user_url %>
+<br>

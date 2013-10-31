@@ -1,4 +1,4 @@
-<div align="right">Create Account | Login</div>
+<div align="right"><%= link_to "Create Account", new_user_url %> | <%= link_to "Login", new_session_url %></div>
 <br>
 
 <h2>Keep track of group expenses with IOU:</h2>
@@ -16,6 +16,8 @@ So easy!
 	<input type="text" id="name" name="bill[name]" value="<%= @bill.name %>" placeholder="Bill Name"> ?
 	<br>
 	<input type="text" id="description" name="bill[description]" value="<%= @bill.description %>" placeholder="Bill Description (optional)"> ?
+	<br>
+	<input type="number" id="amount" name="bill[amount]" value="<%= @bill.amount %>" placeholder="Amount"> ?
 	<br>
 
 	<input type="submit" value="Add Bill"> ?

@@ -3,5 +3,7 @@ Iou::Application.routes.draw do
 
   resources :bills
 
+  resources :users, :except => [:index, :destroy]
+
   resources :session, :only => [:new, :create, :destroy]
 end
