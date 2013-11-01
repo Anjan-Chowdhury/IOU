@@ -13,15 +13,17 @@ So easy!
 <form action="<%= bills_url %>" method="post">
 	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-	<input type="text" id="name" name="bill[name]" value="<%= @bill.name %>" placeholder="Bill Name"> ?
+	<input type="text" id="bill-name" name="bill[name]" value="<%= @bill.name %>" placeholder="Bill Name"> ?
 	<br>
-	<input type="text" id="description" name="bill[description]" value="<%= @bill.description %>" placeholder="Bill Description (optional)"> ?
+	<input type="text" id="bill-description" name="bill[description]" value="<%= @bill.description %>" placeholder="Bill Description (optional)"> ?
 	<br>
-	<input type="number" id="amount" name="bill[amount]" value="<%= @bill.amount %>" placeholder="Amount"> ?
+	<input type="number" id="bill-amount" name="bill[amount]" value="<%= @bill.amount %>" placeholder="Amount"> ?
 	<br>
 
-	<input type="submit" value="Add Bill"> ?
+	<input type="submit" id="add-bill" value="Add Bill"> ?
 </form>
+
+<div id="form-submit-messages"></div>
 
 <br>
 <br>

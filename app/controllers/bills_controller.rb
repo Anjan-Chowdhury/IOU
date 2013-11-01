@@ -11,9 +11,14 @@ class BillsController < ApplicationController
 
 	def create
 		@bill = Bill.new(params[:bill])
-		if @bill.save!
-			redirect_to bill_url(@bill)
+		if @bill.valid?
+			@bill.save
+			respond_to do |format|
+				format.json { render :json => {:error => "none", :message => "Bill id: #{@bill.id} successfully added." } }
+				format.html { redirect_to bill_url(@bill) }
+			end
 		else
+			flash[:notice] = "Error with your bill."
 			render :new
 		end
 	end
