@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.13'
 
@@ -23,6 +23,13 @@ end
 gem 'jquery-rails'
 gem 'better_errors'
 gem 'binding_of_caller'
+
+gem "twitter-bootstrap-rails"
+gem "therubyracer", "~> 0.12.0"
+gem "less-rails", "~> 2.4.2"
+
+gem 'underscore-rails'
+gem 'ejs'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,35 +1,36 @@
-<div align="right"><%= link_to "Create Account", new_user_url %> | <%= link_to "Login", new_session_url %></div>
-<br>
+<head>
+</head>
 
-<h2>Keep track of group expenses with IOU:</h2>
-<ol>
-	<li>Add a new bill.</li>
-	<li>List your friends who were part of the bill.</li>
-	<li>Select if you want to split evenly or split by exact amounts.</li>
-	<li>IOU will show who owes what amount to whom.</li>
-</ol>
-So easy!
-<h2>Add a Bill</h2>
+<h2>IOU:<span class="lead"> An App for Group Expenses</span></h2>
+
+<h3>Add a Bill</h3>
 <form action="<%= bills_url %>" method="post">
 	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-	<input type="text" id="bill-name" name="bill[name]" value="<%= @bill.name %>" placeholder="Bill Name"> ?
-	<br>
-	<input type="text" id="bill-description" name="bill[description]" value="<%= @bill.description %>" placeholder="Bill Description (optional)"> ?
-	<br>
-	<input type="number" id="bill-amount" name="bill[amount]" value="<%= @bill.amount %>" placeholder="Amount"> ?
+	<input type="text" id="bill-name" name="bill[name]" value="<%= @bill.name %>" placeholder="Bill Name">
+	<a href="#" data-placement="right" rel="tooltip" title="What was the bill for? For example: dinner, movies, rent"><button class="btn tooltip-info">?</button></a>
 	<br>
 
-	<input type="submit" id="add-bill" value="Add Bill"> ?
+	<textarea class="form-control" id="bill-description" name="bill[description]" value="<%= @bill.description %>" placeholder="Bill Description (optional)" rows="2"></textarea>
+	<a href="#" data-placement="right" rel="tooltip" title="Any notes about this bill? For example: 'Bill did not have an appetizer.' (This step is optional.)"><button class="btn tooltip-info">?</button></a>
+	<br>
+
+	<input type="number" id="bill-amount" name="bill[amount]" value="<%= @bill.amount %>" placeholder="Amount">
+	<a href="#" data-placement="right" rel="tooltip" title="Enter the total bill amount."><button class="btn tooltip-info">?</button></a>
+	<br>
+
+	<br>
+	<button class="btn btn-info" id="split-evenly">Split Evenly</button><a href="#" data-placement="right" rel="tooltip" title="Each person on this bill will owe the same amount."><button class="btn tooltip-info">?</button></a>
+	<button class="btn btn-info" id="split-exact-amounts">Split by Exact Amounts</button><a href="#" data-placement="right" rel="tooltip" title="You will input what each person owes."><button class="btn tooltip-info">?</button></a>
+	<br>
+
+	<br>
+	<div id="guests-on-bill"></div>
+	<br>
 </form>
 
+
+<div id="submit-bill"></div>
 <div id="form-submit-messages"></div>
 
 <br>
-<br>
-Other features:
-<ul>
-	<li>Edit your bills.</li>
-	<li>View payment history.</li>
-	<li>Keep track of payments to friends.</li>
-</ul>

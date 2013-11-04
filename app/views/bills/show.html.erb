@@ -9,5 +9,10 @@ Bill Name: <%= @bill.name %>
 	Bill Description: <%= @bill.description %>
 <% end %>
 <br>
-
+Bill Amount: <%= @bill.amount %>
+<br>
+<% @guests.each do |guest| %>
+	<%= guest.name %> paid <%= guest.amount_paid %>; <%= guest.name %> should have paid <%= guest.amount_should_have_paid %>
+	<br>
+<% end %>
 <%= link_to "Back to the index", root_url %>

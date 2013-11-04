@@ -8,6 +8,28 @@ class User < ActiveRecord::Base
 
   has_many :bills
 
+  has_many :debts,
+    :foreign_key => "debtor_id"
+    
+  has_many :credits, 
+    :class_name => "Debt",
+    :foreign_key => "creditor_id"
+
+  has_many :debtors,
+    :through => :credits
+    
+  has_many :creditors, 
+    :through => :debts
+
+  # has_many :bills, 
+  #   :through => :debts,
+  #   :foreign_key => :debtor_id
+  
+  has_many :invoices,
+    :through => :credits,
+    :source => :bill,
+    :foreign_key => :creditor_id
+
 	def password
     @password || self.password_digest
   end

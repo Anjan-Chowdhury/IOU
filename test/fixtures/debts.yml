@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bill_id: 1
+  debtor_id: 1
+  creditor_id: 1
+  amount: 1.5
+  is_a_payment: false
+  memo: MyString
+
+two:
+  bill_id: 1
+  debtor_id: 1
+  creditor_id: 1
+  amount: 1.5
+  is_a_payment: false
+  memo: MyString
