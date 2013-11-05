@@ -5,9 +5,9 @@ class Bill < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :guests
+  has_many :guests, dependent: :destroy
 
-  has_many :debts
+  has_many :debts, dependent: :destroy
 
   has_many :debtors, 
     :through => :debts, 
@@ -21,42 +21,46 @@ class Bill < ActiveRecord::Base
     :reject_if => :all_blank, 
     :allow_destroy => true
 
-	def self.calculate(bill_id, bill_total, guests_params)	    
-	    guests_array = []
-	    amount_should_have_paid = bill_total / guests_params.length
-	    
-	    guests_params.each do |guest|
-	      new_guest = Player.new(guest[:name], guest[:amount_paid].to_i, amount_should_have_paid)
+	def self.calculate(bill_id, bill_total, guests_params)
+    guests_array = []
+    
+    guests_params.each do |guest|
+      if guest.has_key?("amount_should_have_paid")
+	      new_guest = Player.new(guest[:name], guest[:amount_paid].to_i, guest[:amount_should_have_paid].to_i)
+	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :amount_paid => guest[:amount_paid].to_i, :amount_should_have_paid => guest[:amount_should_have_paid].to_i)
+      else
+  	    amount_should_have_paid = bill_total / guests_params.length
+        new_guest = Player.new(guest[:name], guest[:amount_paid].to_i, amount_should_have_paid)
 	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :amount_paid => guest[:amount_paid].to_i, :amount_should_have_paid => amount_should_have_paid)
-	      guests_array.push(new_guest)
 	    end
-	    
-	    guests_who_overpaid = []
-	    guests_who_underpaid = []
+      guests_array.push(new_guest)
+    end
+    
+    guests_who_overpaid = []
+    guests_who_underpaid = []
 
-	    guests_array.each do |guest|
-	      guests_who_overpaid.push(guest) if guest.bill_difference > 0
-	      guests_who_underpaid.push(guest) if guest.bill_difference < 0
-	    end
-	    
-	    debts_count = 0
+    guests_array.each do |guest|
+      guests_who_overpaid.push(guest) if guest.bill_difference > 0
+      guests_who_underpaid.push(guest) if guest.bill_difference < 0
+    end
+    
+    debts_count = 0
 
-	    total_from_debtors = 0
+    total_from_debtors = 0
 
-	    guests_who_underpaid.each do |guest|
-	      total_from_debtors += guest.amount_owes
-	    end
+    guests_who_underpaid.each do |guest|
+      total_from_debtors += guest.amount_owes
+    end
 
-	    guests_who_underpaid.each do |u_guest|
-	    
-	      guests_who_overpaid.each do |o_guest|
-	        owe_to_friend = u_guest.amount_owes * (o_guest.bill_difference/total_from_debtors.to_f)
-	        Debt.create!(:bill_id => bill_id, :debtor_id => u_guest.user_id, :creditor_id => o_guest.user_id, :amount => owe_to_friend)
-	        debts_count += 1
-	      end
-
+    guests_who_underpaid.each do |u_guest|
+    
+      guests_who_overpaid.each do |o_guest|
+        owe_to_friend = u_guest.amount_owes * (o_guest.bill_difference/total_from_debtors.to_f)
+        Debt.create!(:bill_id => bill_id, :debtor_name => u_guest.name, :creditor_name => o_guest.name, :amount => owe_to_friend)
+        debts_count += 1
+      end
 		end
-	    
+    
 		"#{debts_count} debts created for this bill."
 	end
 
@@ -72,10 +76,10 @@ class Bill < ActiveRecord::Base
 end
 
 class Player
-  attr_accessor :user_id, :amount_paid, :amount_should_have_paid, :id
+  attr_accessor :name, :amount_paid, :amount_should_have_paid, :id
   
-  def initialize(user_id, amount_paid, amount_should_have_paid)
-    @user_id = user_id
+  def initialize(name, amount_paid, amount_should_have_paid)
+    @name = name
     @amount_paid = amount_paid
     @amount_should_have_paid = amount_should_have_paid
   end

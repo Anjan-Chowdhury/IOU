@@ -1,7 +1,6 @@
-<h1>Bill Show Page</h1>
-Bill ID: <%= @bill.id %>
+<h2>Bill #<%= @bill.id %> Details</h2>
 <br>
-User ID: <%= @bill.user_id %>
+Created by: <%= @bill.user.name %>
 <br>
 Bill Name: <%= @bill.name %>
 <br>
@@ -9,10 +8,25 @@ Bill Name: <%= @bill.name %>
 	Bill Description: <%= @bill.description %>
 <% end %>
 <br>
-Bill Amount: <%= @bill.amount %>
+Bill Amount: $<%= @bill.amount %>
+<br>
 <br>
 <% @guests.each do |guest| %>
-	<%= guest.name %> paid <%= guest.amount_paid %>; <%= guest.name %> should have paid <%= guest.amount_should_have_paid %>
+	<%= guest.name %> paid $<%= guest.amount_paid %>. <%= guest.name %> should have paid $<%= guest.amount_should_have_paid %>.
 	<br>
 <% end %>
+<br>
+<% @debts.each do |debt| %>
+	<%= debt.debtor_name %> owes <%= debt.creditor_name %> $<%= debt.amount %>.
+	<br>
+<% end %>
+<br>
 <%= link_to "Back to the index", root_url %>
+<br>
+<button id="email-bill" class="btn btn-primary">Email this Bill</button>
+<br>
+<br>
+<% if current_user.nil? %>
+	<%= link_to "Create account", new_user_url %> or <%= link_to "Login", new_session_url %> to save your bill information!
+<% end %>
+<br>

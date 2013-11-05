@@ -16,6 +16,14 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def edit
+		@user = current_user
+		render :edit
+	end
+
+	def update
+	end
+
 	def show
 		@user = User.find(params[:id])
 		@bills = @user.bills

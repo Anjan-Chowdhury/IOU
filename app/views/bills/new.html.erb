@@ -4,19 +4,20 @@
 <h2>IOU:<span class="lead"> An App for Group Expenses</span></h2>
 
 <h3>Add a Bill</h3>
-<form action="<%= bills_url %>" method="post">
+
+<form id="new-bill-form" action="<%= bills_url %>" method="post">
 	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
 	<input type="text" id="bill-name" name="bill[name]" value="<%= @bill.name %>" placeholder="Bill Name">
-	<a href="#" data-placement="right" rel="tooltip" title="What was the bill for? For example: dinner, movies, rent"><button class="btn tooltip-info">?</button></a>
+	<a href="#" data-placement="right" rel="tooltip" title="What was the bill for? For example: dinner, movies, rent"><button class="btn tooltip-info">?</button></a> <span id="bill-name-errors" class="form-errors alert alert-danger"></span>
 	<br>
 
-	<textarea class="form-control" id="bill-description" name="bill[description]" value="<%= @bill.description %>" placeholder="Bill Description (optional)" rows="2"></textarea>
+	<textarea id="bill-description" name="bill[description]" value="<%= @bill.description %>" placeholder="Bill Description (optional)" rows="2"></textarea>
 	<a href="#" data-placement="right" rel="tooltip" title="Any notes about this bill? For example: 'Bill did not have an appetizer.' (This step is optional.)"><button class="btn tooltip-info">?</button></a>
 	<br>
 
 	<input type="number" id="bill-amount" name="bill[amount]" value="<%= @bill.amount %>" placeholder="Amount">
-	<a href="#" data-placement="right" rel="tooltip" title="Enter the total bill amount."><button class="btn tooltip-info">?</button></a>
+	<a href="#" data-placement="right" rel="tooltip" title="Enter the total bill amount."><button class="btn tooltip-info">?</button></a> <span id="bill-amount-errors" class="form-errors alert alert-danger"></span>
 	<br>
 
 	<br>
@@ -29,8 +30,6 @@
 	<br>
 </form>
 
-
-<div id="submit-bill"></div>
-<div id="form-submit-messages"></div>
+<div id="form-submit-messages" class="form-errors alert alert-danger"></div>
 
 <br>

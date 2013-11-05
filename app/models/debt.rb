@@ -1,5 +1,5 @@
 class Debt < ActiveRecord::Base
-  attr_accessible :amount, :bill_id, :creditor_id, :debtor_id, :is_a_payment, :memo
+  attr_accessible :amount, :bill_id, :creditor_id, :creditor_name, :debtor_id, :debtor_name, :is_a_payment, :memo
 
   belongs_to :bill
 

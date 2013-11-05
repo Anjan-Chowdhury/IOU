@@ -1,19 +1,9 @@
 $(function() {
-
-	$("#add-bill").click(function(e) {
-		e.preventDefault();
-		if ($("#bill-name").val() == "") {
-			alert("Name of bill cannot be blank.");
-		} else {
-			submitBill();
-		}
-	});
+	var numFriends = 1;
 
 	$(".tooltip-info").click(function(e) {
 		e.preventDefault();
 	});
-
-	var numFriends = 1;
 
 	$("#split-evenly").click(function(e) {
 		e.preventDefault();
@@ -33,6 +23,13 @@ $(function() {
 			numFriends += 1;
 			addFriendTextBox("split evenly");
 		});
+
+		$("#new-bill-form").submit(function(e) {
+			$(".form-errors").empty(); 
+			if (checkForInvalidFormInput() == true) {
+				e.preventDefault();
+			}
+		});
 	};
 
 	var splitExactAmounts = function() {
@@ -43,16 +40,22 @@ $(function() {
 			numFriends += 1;
 			addFriendTextBox("split exact amounts");
 		});
+
+		$("#new-bill-form").submit(function(e) {
+			$(".form-errors").empty(); 
+			if (checkForInvalidFormInput() == true) {
+				e.preventDefault();
+			}
+		});
 	};
 
 	var addFriendTextBox = function(howToSplit) {
 		if (howToSplit == "split evenly") {
-			var $textBox = $('<div><input type="text" class="friend-name" name="bill[guests][][name]" data-id=' + numFriends + ' placeholder="Enter Friend Name"> paid <input type="number" class="friend-paid" name="bill[guests][][amount_paid]" data-id=' + numFriends + ' placeholder="Amount"></div><br>');
+			var $textBox = JST['bills/add_friend_split_evenly']({ numFriends: numFriends });
 		} else {
-			var $textBox = $('<div><input type="text" class="friend-name" name="bill[guests][][name]" data-id=' + numFriends + ' placeholder="Enter Friend Name"> paid <input type="number" class="friend-paid" data-id=' + numFriends + ' placeholder="Amount"></div><br>');
+			var $textBox = JST['bills/add_friend_split_exact_amounts']({ numFriends: numFriends});
 		}
-		var $removeTextBoxButton = $('<button class="btn btn-warning remove-friend" data-id=' + numFriends + '>Remove This Friend</button>');
-		$textBox.append($removeTextBoxButton);
+
 		$(".add-friend").before($textBox);
 
 		$(".remove-friend").click(function(e) {
@@ -69,7 +72,51 @@ $(function() {
 		});
 	};
 
-	var getNamesAndAmounts = function() {
-		console.log("get names and amounts");
+	var checkForInvalidFormInput = function() {
+		var totalPaidByGuests = 0;
+		var totalShouldHavePaidByGuests = 0;
+		var invalidInput = false;
+		var numMissingGuestNames = 0;
+
+		if ($("#bill-name").val() == "") {
+			$("#bill-name-errors").append("Bill Name cannot be blank.");
+			invalidInput = true;
+		}
+
+		if ($("#bill-amount").val() == "") {
+			$("#bill-amount-errors").append("Bill Amount cannot be blank.");
+			invalidInput = true;
+		}
+
+		$.each($(".amount-paid"), function() {
+			totalPaidByGuests += parseInt($(this).val());
+		});
+
+		if (totalPaidByGuests != $("#bill-amount").val()) {
+			$("#form-submit-messages").append("Please check that amounts guests paid matches bill total.<br>");
+			invalidInput = true;
+		}
+
+		$.each($(".amount-should-have-paid"), function() {
+			totalShouldHavePaidByGuests += parseInt($(this).val());
+		});
+
+		if (totalShouldHavePaidByGuests != $("#bill-amount").val()) {
+			$("#form-submit-messages").append("Please check that amounts guests should have paid matches bill total.<br>");
+			invalidInput = true;
+		}
+
+		$.each($(".guest-name"), function() {
+			if ($(this).val() == "") {
+				numMissingGuestNames += 1;
+			}
+		});
+
+		if (numMissingGuestNames > 0) {
+			$("#form-submit-messages").append("Friend names cannot be blank.");
+			invalidInput = true;
+		}
+
+		return invalidInput;
 	};
 });

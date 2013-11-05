@@ -38,6 +38,7 @@ class BillsController < ApplicationController
 	def show
 		@bill = Bill.find(params[:id])
 		@guests = @bill.guests
+		@debts = @bill.debts
 		render :show
 	end
 end
