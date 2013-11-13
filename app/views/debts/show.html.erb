@@ -1,0 +1,16 @@
+<h2>Payment #<%= @debt.id %></h2>
+Amount: $<%= @debt.amount %>
+<br>
+Memo: <%= @debt.memo %>
+<br>
+Paid by:
+<br>
+Paid to: 
+<br>
+<br>
+<div id="request-payment-confirmation">
+	<input type="email" id="confirmation-email-address" placeholder="email@example.com"><button id="send-payment-email" data-id=<%= @debt.id %> class="btn btn-primary"> Send Confirmation Email </button>
+</div>
+<br>
+<br>
+<%= link_to "Back to index", root_url %>

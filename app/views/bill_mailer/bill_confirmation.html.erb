@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h2>Bill #<%= @bill.id %> Details</h2>
+    <br>
+    Created by: <%= @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+    <br>
+    Bill Name: <%= @bill.name %>
+    <br>
+    <% unless @bill.description.blank? %>
+      Bill Description: <%= @bill.description %>
+    <% end %>
+    <br>
+    Bill Amount: $<%= @bill.amount %>
+    <br>
+    <br>
+    <% @guests.each do |guest| %>
+      <%= guest.name %> paid $<%= guest.amount_paid %>. <%= guest.name %> should have paid $<%= guest.amount_should_have_paid %>.
+      <br>
+    <% end %>
+    <br>
+    <% @debts.each do |debt| %>
+      <%= debt.debtor_name %> owes <%= debt.creditor_name %> $<%= debt.amount %>.
+      <br>
+    <% end %>
+    <br>
+    <br>
+    <p>
+      Create an account to use advanced features.
+    </p>
+    <p>Thanks for using IOU and have a great day!</p>
+  </body>
+</html>

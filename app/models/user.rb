@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password
 
   validates :name, :email, :password, presence: :true
-  validates :email, uniqueness: true
+  validates :email, :uniqueness => { :case_sensitive => false }
+  validates :name, uniqueness: :true
 
   has_many :bills
 
@@ -41,5 +42,9 @@ class User < ActiveRecord::Base
 
   def verify_password(password)
   	BCrypt::Password.new(self.password_digest) == password
+  end
+
+  def to_param
+    name
   end
 end

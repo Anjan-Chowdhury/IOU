@@ -1,0 +1,24 @@
+Bill #<%= @bill.id %> Details
+
+Created by: <%= @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+
+Bill Name: <%= @bill.name %>
+
+<% unless @bill.description.blank? %>
+  Bill Description: <%= @bill.description %>
+<% end %>
+
+Bill Amount: $<%= @bill.amount %>
+
+<% @guests.each do |guest| %>
+  <%= guest.name %> paid $<%= guest.amount_paid %>. <%= guest.name %> should have paid $<%= guest.amount_should_have_paid %>.
+
+<% end %>
+
+<% @debts.each do |debt| %>
+  <%= debt.debtor_name %> owes <%= debt.creditor_name %> $<%= debt.amount %>.
+
+<% end %>
+
+Create an account to use advanced features.
+Thanks for using IOU and have a great day!

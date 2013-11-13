@@ -1,9 +1,9 @@
-<h1>Login - New Session</h1>
+<h2>Login - New Session</h2>
 
 <form action="<%= session_index_url %>" method="post">
-	<label>Email: <input type="text" name="user[email]" /></label>
+	<input type="text" name="user[email]" placeholder="Email"/>
 	<br>
-	<label>Password: <input type="password" name="user[password]" /></label>
+	<input type="password" name="user[password]" placeholder="Password" />
 	<br>
 	<input type="submit" class="btn btn-success" value="Login" />
 </form>
@@ -11,3 +11,5 @@
 <br>
 Don't have an account? <%= link_to "Create Account", new_user_url %>
 <br>
+<br>
+<%= link_to "Back to Index", root_url %>

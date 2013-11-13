@@ -2,8 +2,10 @@
 </head>
 
 <h2>IOU:<span class="lead"> An App for Group Expenses</span></h2>
-
-<h3>Add a Bill</h3>
+<span class="lead">Use IOU right away. No account necessary!</span>
+<br>
+<br>
+<h3>Add a Bill <span class="lead"> or <button class="btn btn-danger" data-toggle="modal" data-target="#payAFriend"> Pay A Friend </button></span></h3>
 
 <form id="new-bill-form" action="<%= bills_url %>" method="post">
 	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
@@ -31,5 +33,24 @@
 </form>
 
 <div id="form-submit-messages" class="form-errors alert alert-danger"></div>
-
 <br>
+<br>
+
+
+<div class="modal fade" id="payAFriend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Pay A Friend</h4>
+      </div>
+      <div class="modal-body">
+      	<p><a href="/debts/new"><button class="btn btn-success"> Record a Cash Payment </button></a></p>
+      	<p><a href="/"><button class="btn btn-danger"> Send Monday via PayPal </button></a></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

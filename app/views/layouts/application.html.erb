@@ -7,30 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<% if flash[:notice] %>
-		<div class="alert">
-		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <strong>Message:</strong> <%= flash[:notice] %>
-		</div>
-	<% end %>
 
 <div class="container">
 	<div class="row">
 		<div class="span2">
-			<br>
-			<br>
-			Use IOU right away. No account necessary!		
-			<br>
-			<br>
-			However, consider creating a free account to use our advanced features:
-			<ul>
-				<li>Save and Edit your bills.</li>
-				<li>View payment history.</li>
-				<li>Keep track of payments to friends.</li>
-				<li>Use Paypal to pay friends.</li>
-			</ul>
 		</div>
-		<div class="span7"><%= yield %></div>
+		<div class="span7">
+			<% if flash[:notice] %>
+				<br>
+				<div class="alert">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>Message:</strong> <%= flash[:notice] %>
+				</div>
+			<% end %>
+
+			<%= yield %></div>
 		<div class="span3">
 			<%= link_to "Create Account", new_user_url %> | <%= link_to "Login", new_session_url %>
 			<br>
@@ -40,9 +31,18 @@
 				<li>Select if you want to split evenly or split by exact amounts.</li>
 				<li>List your friends who were part of the bill.</li>
 				<li>IOU will calculate who owes what amount to whom.</li>
+				<li>Email bill details to yourself and friends.</li>
 			</ol>
-			<b>So easy!</b>
+			<em>So easy!</em>
 			<br>
+			<br>
+			<h4>Create a free account for more features:</h4>
+			<ul>
+				<li>Save and Edit your bills.</li>
+				<li>View payment history.</li>
+				<li>Keep track of payments to friends.</li>
+				<li>Use Paypal to pay friends.</li>
+			</ul>
 		</div>
 	</div>
 </div>

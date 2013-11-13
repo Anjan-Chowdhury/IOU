@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.find_by_name(params[:id])
 		@bills = @user.bills
 		print "### Bills"
 		print @bills

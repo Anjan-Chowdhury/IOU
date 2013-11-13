@@ -1,0 +1,20 @@
+<h2>Pay A Friend</h2>
+This form helps you record when you've paid a friend. Click here to send a payment through PayPal.
+<br>
+<br>
+<form id="payment-form" action="<%= debts_url %>" method="post">
+	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+	<input type="text" name="debt[creditor_name]" placeholder="Friend You Want to Pay">
+	<br>
+	<input type="text" name="debt[memo]" value="<%= @debt.memo %>" placeholder="Reason for Payment">
+	<br>
+	<input type="number" name="debt[amount]" value="<%= @debt.amount %>" placeholder="Amount">
+	<br>
+	<br>
+	<input type="submit" class="btn btn-danger" value="Record Payment">
+</form>
+<br>
+<br>
+
+<%= link_to "Return to Index", root_url %>

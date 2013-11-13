@@ -14,16 +14,12 @@ class BillsController < ApplicationController
 	end
 
 	def create
-    bill_id = Bill.last.nil? ? 1: Bill.last.id + 1
+    bill_id = Bill.last.nil? ? 1 : Bill.last.id + 1
 		@bill = Bill.new(:id => bill_id, :user => current_user, :name => params[:bill][:name], :description => params[:bill][:description], :amount => params[:bill][:amount])
-
-		print "### Guests on Bill"
-		print params[:bill][:guests]
 
 		if @bill.valid?
 			@bill.save
 	    Bill.calculate(bill_id, params[:bill][:amount].to_i, params[:bill][:guests])
-
 
 			respond_to do |format|
 				format.json { render :json => {:error => "none", :message => "Bill id: #{@bill.id} successfully added." } }
@@ -40,5 +36,18 @@ class BillsController < ApplicationController
 		@guests = @bill.guests
 		@debts = @bill.debts
 		render :show
+	end
+
+	def edit
+	end
+
+	def update
+	end
+
+	def sendconfirmation
+		@bill = Bill.find(params[:id])
+		email = params[:email]
+    BillMailer.bill_confirmation(email, @bill).deliver  
+    redirect_to root_url, notice: 'Bill confirmation sent.'
 	end
 end

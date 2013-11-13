@@ -15,8 +15,22 @@ $(function() {
 		splitExactAmounts();
 	});
 
+	$("#send-bill-confirmation").click(function(e) {
+		e.preventDefault();
+		var confirmationEmail = $.post( "/bills/" + $(this).data("id") + "/sendconfirmation.json", 
+							{email: $("#confirmation-email-address").val() }, 
+							function( data ) {
+								$(".request-confirmation-email").after("<span class='label label-success'> Email sent! </span>");
+							});
+	});
+
+	$("#send-payment-email").click(function(e) {
+		e.preventDefault();
+		console.log("I know you're trying to send the payment confirmation to " + $("#confirmation-email-address").val());
+	});
+
 	var splitEvenly = function() {
-		$("#guests-on-bill").html(JST['bills/splitevenly']({}));
+		$("#guests-on-bill").html(JST['bills/split_evenly']({}));
 
 		$(".add-friend").click(function(e) {
 			e.preventDefault();
@@ -97,13 +111,15 @@ $(function() {
 			invalidInput = true;
 		}
 
-		$.each($(".amount-should-have-paid"), function() {
-			totalShouldHavePaidByGuests += parseInt($(this).val());
-		});
+		if ($(".amount-should-have-paid").length > 0) {
+			$.each($(".amount-should-have-paid"), function() {
+				totalShouldHavePaidByGuests += parseInt($(this).val());
+			});
 
-		if (totalShouldHavePaidByGuests != $("#bill-amount").val()) {
-			$("#form-submit-messages").append("Please check that amounts guests should have paid matches bill total.<br>");
-			invalidInput = true;
+			if (totalShouldHavePaidByGuests != $("#bill-amount").val()) {
+				$("#form-submit-messages").append("Please check that amounts guests should have paid matches bill total.<br>");
+				invalidInput = true;
+			}
 		}
 
 		$.each($(".guest-name"), function() {

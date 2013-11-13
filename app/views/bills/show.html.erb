@@ -1,6 +1,6 @@
 <h2>Bill #<%= @bill.id %> Details</h2>
 <br>
-Created by: <%= @bill.user.name %>
+Created by: <%= @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
 <br>
 Bill Name: <%= @bill.name %>
 <br>
@@ -21,9 +21,13 @@ Bill Amount: $<%= @bill.amount %>
 	<br>
 <% end %>
 <br>
-<%= link_to "Back to the index", root_url %>
 <br>
-<button id="email-bill" class="btn btn-primary">Email this Bill</button>
+<div id="request-bill-confirmation">
+	<input type="email" id="confirmation-email-address" placeholder="email@example.com"><button id="send-bill-confirmation" data-id=<%= @bill.id %> class="btn btn-primary"> Send Confirmation Email </button>
+</div>
+<br>
+<br>
+<%= link_to "Back to the index", root_url %>
 <br>
 <br>
 <% if current_user.nil? %>
