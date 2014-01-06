@@ -2,7 +2,7 @@ Iou::Application.routes.draw do
   root :to => 'bills#new'
 
   resources :bills
-  match '/bills/:id/sendconfirmation' => 'bills#sendconfirmation', :via => :post, :as => :sendconfirmation
+  match '/bills/:id/billconfirmation' => 'bills#billconfirmation', :via => :post, :as => :billconfirmation
 
 	resources :debts, :only => [:create, :new, :show]
   match '/debts/:id/paymentconfirmation' => 'debts#paymentconfirmation', :via => :post, :as => :paymentconfirmation

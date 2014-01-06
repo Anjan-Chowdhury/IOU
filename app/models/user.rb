@@ -3,9 +3,9 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password
 
-  validates :name, :email, :password, presence: :true
-  validates :email, :uniqueness => { :case_sensitive => false }
-  validates :name, uniqueness: :true
+  validates :name, :email, :password, presence: :true, unless: :guest?
+  validates :email, :uniqueness => { :case_sensitive => false }, allow_blank: :true
+  validates :name, uniqueness: :true, allow_blank: :true
 
   has_many :bills
 
@@ -46,5 +46,12 @@ class User < ActiveRecord::Base
 
   def to_param
     name
+  end
+
+  def self.new_guest
+    new { |u| u.guest = true }
+  end
+
+  def move_to(user)
   end
 end

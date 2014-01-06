@@ -20,7 +20,7 @@ class SessionController < ApplicationController
 
 	def destroy
 		logout_user
-		flash[:notice] = "Successful log out. Session token=#{ session[:session_token] }"
+		flash[:notice] = "Successful log out. Session token=#{ session[:session_token] }. Do we have a current user? #{current_user.nil?}"
 		redirect_to new_session_url
 	end
 end

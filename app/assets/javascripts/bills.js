@@ -17,16 +17,24 @@ $(function() {
 
 	$("#send-bill-confirmation").click(function(e) {
 		e.preventDefault();
-		var confirmationEmail = $.post( "/bills/" + $(this).data("id") + "/sendconfirmation.json", 
+		$("#email-status").html(JST['emails/sending_email']({}));
+		var confirmationEmail = $.post( "/bills/" + $(this).data("id") + "/billconfirmation.json", 
 							{email: $("#confirmation-email-address").val() }, 
 							function( data ) {
-								$(".request-confirmation-email").after("<span class='label label-success'> Email sent! </span>");
+								$("#email-status").html("<b>Email sent!</b>");
+								$("#confirmation-email-address").val("");
 							});
 	});
 
 	$("#send-payment-email").click(function(e) {
 		e.preventDefault();
-		console.log("I know you're trying to send the payment confirmation to " + $("#confirmation-email-address").val());
+		$("#email-status").html(JST['emails/sending_email']({}));
+		var confirmationEmail = $.post( "/debts/" + $(this).data("id") + "/paymentconfirmation.json", 
+							{email: $("#confirmation-email-address").val() }, 
+							function( data ) {
+								$("#email-status").html("<b>Email sent!</b>");
+								$("#confirmation-email-address").val("");
+							});
 	});
 
 	var splitEvenly = function() {

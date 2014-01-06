@@ -1,14 +1,9 @@
 class DebtMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "iou.bill.confirmation@gmail.com"
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.debt_mailer.payment_confirmation.subject
-  #
-  def payment_confirmation
-    @greeting = "Hi"
+  def payment_confirmation(email, debt)
+    @debt = debt
 
-    mail to: "to@example.org"
+    mail(:to => email, :subject => "Payment #{debt.id} Details from IOU")
   end
 end

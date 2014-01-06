@@ -7,6 +7,15 @@ These are your bills:
 <% end %>
 
 <br>
+<br>
+These are your payments:
+<% @payments.each do |payment| %>
+	<ul>
+	<li> <%= link_to "Payment ##{payment.id}", debt_url(payment) %></li>
+	</ul>
+<% end %>
+
+<br>
 <%= link_to "Return to Index Page", root_url %>
 <br>
 <% if logged_in? %>

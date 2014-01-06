@@ -38,13 +38,7 @@ class BillsController < ApplicationController
 		render :show
 	end
 
-	def edit
-	end
-
-	def update
-	end
-
-	def sendconfirmation
+	def billconfirmation
 		@bill = Bill.find(params[:id])
 		email = params[:email]
     BillMailer.bill_confirmation(email, @bill).deliver  

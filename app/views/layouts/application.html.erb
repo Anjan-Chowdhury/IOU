@@ -23,6 +23,8 @@
 
 			<%= yield %></div>
 		<div class="span3">
+			Current_user.email: <%= current_user.email %>
+			<br>
 			<%= link_to "Create Account", new_user_url %> | <%= link_to "Login", new_session_url %>
 			<br>
 			<h3>How to use:</h3>
@@ -47,5 +49,16 @@
 	</div>
 </div>
 
+<script>
+if (typeof Iou === "undefined") {
+	Iou = {};
+}
+
+<% unless current_user.guest? %>
+	Iou.currentUserId = <%= current_user.id %>;
+<% else %>
+	Iou.currentUserId = null;
+<% end %>
+</script>
 </body>
 </html>

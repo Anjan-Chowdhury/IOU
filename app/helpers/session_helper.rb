@@ -12,7 +12,7 @@ module SessionHelper
 
 	def logout_user
 		if current_user
-			current_user.session_token = nil
+			current_user[:session_token] = nil
 			current_user.save
 		end
 

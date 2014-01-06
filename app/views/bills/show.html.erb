@@ -1,6 +1,10 @@
 <h2>Bill #<%= @bill.id %> Details</h2>
 <br>
-Created by: <%= @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+Created by: <% if @bill.user.name.nil? %>
+Guest User 
+<% else %>
+<%= @bill.user.name %>
+<% end %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
 <br>
 Bill Name: <%= @bill.name %>
 <br>
@@ -27,6 +31,11 @@ Bill Amount: $<%= @bill.amount %>
 </div>
 <br>
 <br>
+<div id="email-status">
+</div>
+<br>
+<br>
+
 <%= link_to "Back to the index", root_url %>
 <br>
 <br>

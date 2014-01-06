@@ -28,6 +28,9 @@ class DebtsController < ApplicationController
 	end
 
 	def paymentconfirmation
-		
+		@debt = Debt.find(params[:id])
+		email = params[:email]
+    DebtMailer.payment_confirmation(email, @debt).deliver  
+    redirect_to root_url, notice: 'Payment confirmation sent.'
 	end
 end
