@@ -28,7 +28,7 @@
 			<% else %>
 				Logged in as: <%= current_user.email %>
 				<br>
-				<%= link_to "Profile", user_url(current_user) %> | <%= button_to "Logout", session_url, :method => "delete" %>
+				<%= link_to "Profile", user_url(current_user) %>
 			<% end %>
 			<br>
 			<br>
@@ -50,6 +50,11 @@
 				<li>Keep track of payments to friends.</li>
 				<li>Use Paypal to pay friends.</li>
 			</ul>
+			<br>
+			<h4>About Belda</h4>
+			<p>I code in Ruby, Rails, and JavaScript.</p>
+			<p>Visit my Github: <a href="http://www.github.com/hellobelda">www.github.com/hellobelda</a></p>
+			<p>Visit my LinkedIn: <a href="http://www.linkedin.com/in/beldachan">www.linkedin.com/in/beldachan</a></p>
 		</div>
 	</div>
 </div>
