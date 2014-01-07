@@ -90,6 +90,7 @@ $(function() {
 	var submitBill = function() {
 		var bill = $.post("/bills.json", {bill: {name: 'abc', amount: 10} });
 		bill.done(function(data) {
+			$("#form-submit-messages").attr("class", "form-errors alert alert-danger");
 			$("#form-submit-messages").text(data.message);
 		});
 	};
@@ -115,6 +116,7 @@ $(function() {
 		});
 
 		if (totalPaidByGuests != $("#bill-amount").val()) {
+			$("#form-submit-messages").attr("class", "form-errors alert alert-danger");
 			$("#form-submit-messages").append("Please check that amounts guests paid matches bill total.<br>");
 			invalidInput = true;
 		}
@@ -125,6 +127,7 @@ $(function() {
 			});
 
 			if (totalShouldHavePaidByGuests != $("#bill-amount").val()) {
+				$("#form-submit-messages").attr("class", "form-errors alert alert-danger");
 				$("#form-submit-messages").append("Please check that amounts guests should have paid matches bill total.<br>");
 				invalidInput = true;
 			}
@@ -137,6 +140,7 @@ $(function() {
 		});
 
 		if (numMissingGuestNames > 0) {
+			$("#form-submit-messages").attr("class", "form-errors alert alert-danger");
 			$("#form-submit-messages").append("Friend names cannot be blank.");
 			invalidInput = true;
 		}

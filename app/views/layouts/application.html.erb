@@ -40,12 +40,10 @@
 				<li>IOU will calculate who owes what amount to whom.</li>
 				<li>Email bill details to yourself and friends.</li>
 			</ol>
-			<em>So easy!</em>
-			<br>
 			<br>
 			<h4>Create a free account for more features:</h4>
 			<ul>
-				<li>Save and Edit your bills.</li>
+				<li>Save and edit your bills.</li>
 				<li>View payment history.</li>
 				<li>Keep track of payments to friends.</li>
 				<li>Use Paypal to pay friends.</li>
@@ -65,9 +63,9 @@ if (typeof Iou === "undefined") {
 }
 
 <% unless current_user.guest? %>
-	Iou.currentUserId = <%= current_user.id %>;
+	Iou.currentUserName = <%= current_user.name %>;
 <% else %>
-	Iou.currentUserId = null;
+	Iou.currentUserId = "You";
 <% end %>
 </script>
 </body>

@@ -19,10 +19,14 @@ class BillsController < ApplicationController
 
 		if @bill.valid?
 			@bill.save
+
+			print "### Bill Params"
+			print params[:bill]
+			
 	    Bill.calculate(bill_id, params[:bill][:amount].to_i, params[:bill][:guests])
 
 			respond_to do |format|
-				format.json { render :json => {:error => "none", :message => "Bill id: #{@bill.id} successfully added." } }
+				format.json { render :json => {:error => "none", :message => "Bill id: #{@bill.id} successfully added."} }
 				format.html { redirect_to bill_url(@bill) }
 			end
 		else

@@ -5,6 +5,7 @@ class DebtsController < ApplicationController
     @debt = Debt.new(params[:debt])
     @debt.is_a_payment = true
     @debt.creditor_id = current_user.id
+    @debt.creditor_name = current_user.name
     
     if @debt.valid?
     	@debt.save
