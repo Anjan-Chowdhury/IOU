@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
+		params[:user][:name] = params[:user][:name].downcase
 		@user = User.new(params[:user])
 
 		if @user.save

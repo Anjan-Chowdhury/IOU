@@ -21,10 +21,6 @@ class User < ActiveRecord::Base
     
   has_many :creditors, 
     :through => :debts
-
-  # has_many :bills, 
-  #   :through => :debts,
-  #   :foreign_key => :debtor_id
   
   has_many :invoices,
     :through => :credits,
