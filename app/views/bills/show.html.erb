@@ -21,7 +21,7 @@ Bill Amount: $<%= @bill.amount %>
 <% end %>
 <br>
 <% @debts.each do |debt| %>
-	<%= debt.debtor_name %> owes <%= debt.creditor_name %> $<%= debt.amount %>.
+	<%= debt.debtor_name %> <%= debt.debtor_name == "You" ? "owe" : "owes" %> <%= debt.creditor_name %> $<%= debt.amount %>.
 	<br>
 <% end %>
 <br>
