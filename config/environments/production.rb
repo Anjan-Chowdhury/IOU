@@ -16,7 +16,8 @@ Iou::Application.configure do
     port: 587,
     authentication: 'plain',
     user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    password: ENV["GMAIL_PASSWORD"],
+    :enable_starttls_auto => true
   }
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
