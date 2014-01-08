@@ -15,9 +15,8 @@ Iou::Application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     authentication: 'plain',
-    user_name: 'iou.bill.confirmation@gmail.com',
-    password: 'Practice1!',
-    :enable_starttls_auto => true
+    user_name: GMAIL_SMTP_USER,
+    password: GMAIL_SMTP_PASSWORD
   }
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
