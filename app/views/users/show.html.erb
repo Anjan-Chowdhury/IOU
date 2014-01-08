@@ -1,8 +1,11 @@
-<h2><%= @user.name %>'s Profile Page</h2>
+<h2>Hi <%= @user.name %>!</h2>
+
+<h3>Dashboard</h3>
+<h3>Bills</h3>
+
 <% if @bills.empty? %>
   <p>You have no bills.</p>
 <% else %>
-  <p>These are your bills: </p>
 	<% @bills.each do |bill| %>
 		<ul>
 		<li><%= link_to "Bill ##{bill.id}", bill_url(bill) %></li>
@@ -10,12 +13,10 @@
 	<% end %>
 <% end %>
 
-<br>
-<br>
+<h3>Payments</h3>
 <% if @payments.empty? %>
 	<p>You have no payments.</p>
 <% else %>
-  <p>These are your payments:</p>
 	<% @payments.each do |payment| %>
 		<ul>
 		<li> <%= link_to "Payment ##{payment.id}", debt_url(payment) %></li>

@@ -5,32 +5,20 @@
   </head>
   <body>
     <h2>Bill #<%= @bill.id %> Details</h2>
-    <br>
     Created by: <%= @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
-    <br>
-    Bill Name: <%= @bill.name %>
-    <br>
+    <p>Bill Name: <%= @bill.name %></p>
     <% unless @bill.description.blank? %>
-      Bill Description: <%= @bill.description %>
+      <p>Bill Description: <%= @bill.description %></p>
     <% end %>
-    <br>
-    Bill Amount: $<%= @bill.amount %>
-    <br>
-    <br>
+    <p>Bill Amount: $<%= @bill.amount %></p>
     <% @guests.each do |guest| %>
-      <%= guest.name %> paid $<%= guest.amount_paid %>. <%= guest.name %> should have paid $<%= guest.amount_should_have_paid %>.
-      <br>
+      <p><%= guest.name %> paid $<%= guest.amount_paid %>. <%= guest.name %> should have paid $<%= guest.amount_should_have_paid %>.</p>
     <% end %>
-    <br>
     <% @debts.each do |debt| %>
-      <%= debt.debtor_name %> owes <%= debt.creditor_name %> $<%= debt.amount %>.
-      <br>
+      <p><%= debt.debtor_name %> owes <%= debt.creditor_name %> $<%= debt.amount %>.</p>
     <% end %>
     <br>
-    <br>
-    <p>
-      Create an account to use advanced features.
-    </p>
+    <p>Create an account to use advanced features.</p>
     <p>Thanks for using IOU and have a great day!</p>
   </body>
 </html>

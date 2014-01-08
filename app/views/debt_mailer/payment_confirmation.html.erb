@@ -1,2 +1,18 @@
-Payment Information 
-ID: <%= @debt.id %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h2>Payment #<%= @debt.id %></h2>
+	Created: <%= @debt.created_at %>
+	<p>Amount: $<%= @debt.amount %></p>
+	<p>Memo: <%= @debt.memo %></p>
+	<p>Paid by: <%= @debt.creditor_name %></p>
+	<p>Paid to: <%= @debt.debtor_name %></p>
+	<p>Created: <%= @debt.created_at %></p>
+	<br>
+    <p>Create an account to use advanced features.</p>
+    <p>Thanks for using IOU and have a great day!</p>
+  </body>
+</html>

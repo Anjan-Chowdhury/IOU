@@ -30,11 +30,12 @@
 			<% if current_user.guest? %>
 				<%= link_to "Create Account", new_user_url %> | <%= link_to "Login", login_url %>
 			<% else %>
-				Logged in as: <%= current_user.email %> | <%= link_to "Logout", logout_url %>
+				<span class="label label-success"> Logged in as </span> <%= current_user.email %>
 				<br>
 				<%= link_to "Profile", user_url(current_user) %>
+				<br>
+				<%= link_to "Logout", logout_url %>
 			<% end %>
-			<br>
 			<br>
 			<h3>How to use:</h3>
 			<ol>
@@ -69,10 +70,10 @@ if (typeof Iou === "undefined") {
 	Iou = {};
 }
 
-<% unless current_user.guest? %>
-	Iou.currentUserName = <%= current_user.name %>;
-<% else %>
+<% if current_user.guest? %>
 	Iou.currentUserId = "You";
+<% else %>
+	Iou.currentUserId = <%= current_user.id %>;
 <% end %>
 </script>
 </body>
