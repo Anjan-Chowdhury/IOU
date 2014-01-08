@@ -10,7 +10,7 @@ class SessionController < ApplicationController
 
 		if @user && @user.verify_password(params[:user][:password])
 			login_user(@user)
-			flash[:notice] = "Successfully logged in. Session token=#{ session[:session_token] }. User token=#{ current_user.session_token }"
+			flash[:notice] = "Successfully logged in."
 			redirect_to user_url(@user)
 		else
 			flash[:notice] = "Problem logging in. Please try again."
