@@ -22,6 +22,8 @@ class BillsController < ApplicationController
 
 			print "### Bill Params"
 			print params[:bill]
+
+			params[:bill][:guests][0][:name] = current_user.name
 			
 	    Bill.calculate(bill_id, params[:bill][:amount].to_i, params[:bill][:guests])
 

@@ -10,6 +10,7 @@ Iou::Application.routes.draw do
 
   resources :session, :only => [:create, :destroy, :new]
   get "logout" => "session#destroy", :as => "logout"
+  get "login" => "session#new", :as => "login"
 
   resources :users, :except => [:destroy, :index]
   match '/:id' => 'users#show', :as => :user
