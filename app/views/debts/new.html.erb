@@ -8,7 +8,7 @@ If you wish to send a payment through PayPal, <button class="btn btn-warning">cl
 <form id="payment-form" action="<%= debts_url %>" method="post">
 	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-	<input type="text" name="debt[creditor_name]" placeholder="Friend You Want to Pay">
+	<input type="text" name="debt[debtor_name]" placeholder="Friend You Want to Pay">
 	<br>
 	<input type="text" name="debt[memo]" value="<%= @debt.memo %>" placeholder="Reason for Payment">
 	<br>
