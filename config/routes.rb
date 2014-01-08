@@ -9,6 +9,7 @@ Iou::Application.routes.draw do
   match '/debts/:id/paymentconfirmation' => 'debts#paymentconfirmation', :via => :post, :as => :paymentconfirmation
 
   resources :session, :only => [:create, :destroy, :new]
+  get "logout" => "session#destroy", :as => "logout"
 
   resources :users, :except => [:destroy, :index]
   match '/:id' => 'users#show', :as => :user

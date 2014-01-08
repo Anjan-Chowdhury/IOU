@@ -26,7 +26,7 @@
 			<% if current_user.guest? %>
 				<%= link_to "Create Account", new_user_url %> | <%= link_to "Login", new_session_url %>
 			<% else %>
-				Logged in as: <%= current_user.email %>
+				Logged in as: <%= current_user.email %> | <%= link_to "Logout", logout_url %>
 				<br>
 				<%= link_to "Profile", user_url(current_user) %>
 			<% end %>
@@ -49,10 +49,13 @@
 				<li>Use Paypal to pay friends.</li>
 			</ul>
 			<br>
-			<h4>About Belda</h4>
-			<p>I code in Ruby, Rails, and JavaScript.</p>
-			<p>Visit my Github: <a href="http://www.github.com/hellobelda">www.github.com/hellobelda</a></p>
-			<p>Visit my LinkedIn: <a href="http://www.linkedin.com/in/beldachan">www.linkedin.com/in/beldachan</a></p>
+			<div id="bio">
+				<h4>About Belda</h4>
+				<p>I built IOU with Ruby, Rails, jQuery/JavaScript, and Twitter Bootstrap. I love learning about technology and building things.</p>
+				<p>Visit my Github: <a href="http://www.github.com/hellobelda">www.github.com/hellobelda</a></p>
+				<p>Visit my LinkedIn: <a href="http://www.linkedin.com/in/beldachan">www.linkedin.com/in/beldachan</a></p>
+				<p>Email me: beldac@gmail.com</p>
+			</div>
 		</div>
 	</div>
 </div>

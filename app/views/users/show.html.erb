@@ -1,23 +1,32 @@
 <h2><%= @user.name %>'s Profile Page</h2>
-These are your bills: 
-<% @bills.each do |bill| %>
-	<ul>
-	<li><%= link_to "Bill ##{bill.id}", bill_url(bill) %></li>
-	</ul>
+<% if @bills.empty? %>
+  <p>You have no bills.</p>
+<% else %>
+  <p>These are your bills: </p>
+	<% @bills.each do |bill| %>
+		<ul>
+		<li><%= link_to "Bill ##{bill.id}", bill_url(bill) %></li>
+		</ul>
+	<% end %>
 <% end %>
 
 <br>
 <br>
-These are your payments:
-<% @payments.each do |payment| %>
-	<ul>
-	<li> <%= link_to "Payment ##{payment.id}", debt_url(payment) %></li>
-	</ul>
+<% if @payments.empty? %>
+	<p>You have no payments.</p>
+<% else %>
+  <p>These are your payments:</p>
+	<% @payments.each do |payment| %>
+		<ul>
+		<li> <%= link_to "Payment ##{payment.id}", debt_url(payment) %></li>
+		</ul>
+	<% end %>
 <% end %>
 
 <br>
 <%= link_to "Return to Index Page", root_url %>
 <br>
+<br>
 <% if logged_in? %>
-	<%= button_to "Log out", session_url, :method => "delete" %>
+	<%= button_to "Log out", session_url, :method => "delete", class: "btn btn-danger" %>
 <% end %>

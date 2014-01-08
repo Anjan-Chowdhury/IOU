@@ -29,8 +29,6 @@ class UsersController < ApplicationController
 		@user = User.find_by_name(params[:id])
 		@bills = @user.bills
 		@payments = Debt.where(:creditor_id => @user.id, :is_a_payment => true)
-		print "### Bills"
-		print @bills
 		render :show
 	end
 end
