@@ -1,13 +1,13 @@
 <h2>Create Account</h2>
 
-<form action="<%= users_url %>" method="post">
+<form id="new-account-form" action="<%= users_url %>" method="post">
 	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-	<input type="text" id="name" name="user[name]" value="<%= @user.name %>" placeholder="name">
+	<input type="text" id="name" name="user[name]" value="<%= @user.name %>" placeholder="name"> <span id="account-name-errors" class="form-errors alert alert-danger"></span>
 	<br>
-	<input type="text" id="email" name="user[email]" value="<%= @user.email %>" placeholder="email">
+	<input type="text" id="email" name="user[email]" value="<%= @user.email %>" placeholder="email"> <span id="account-email-errors" class="form-errors alert alert-danger"></span>
 	<br>
-	<input type="password" id="password" name="user[password]" placeholder="password">
+	<input type="password" id="password" name="user[password]" placeholder="password"> <span id="account-password-errors" class="form-errors alert alert-danger"></span>
 	<br>
 	<input type="submit" class="btn btn-success" value="Create Account">
 </form>
@@ -18,3 +18,4 @@ Have an account already?
 <br>
 <br>
 <%= link_to "Back to Index", root_url %>
+

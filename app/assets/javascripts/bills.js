@@ -151,4 +151,55 @@ $(function() {
 
 		return invalidInput;
 	};
+
+	$("#new-account-form").submit(function(e) {
+		$(".form-errors").empty(); 
+		if (checkForInvalidCreateAccountInput() == true) {
+			e.preventDefault();
+		}
+	});
+
+	$("#login-form").submit(function(e) {
+		$(".form-errors").empty();
+		if (checkForInvalidLoginInput() == true) {
+			e.preventDefault();
+		}
+	});
+
+	var checkForInvalidCreateAccountInput = function() {
+		var invalidInput = false;
+
+		if ($("#name").val() == "") {
+			$("#account-name-errors").append("Name cannot be blank.");
+			invalidInput = true;
+		}
+
+		if ($("#email").val() == "") {
+			$("#account-email-errors").append("Email cannot be blank.");
+			invalidInput = true;
+		}
+
+		if ($("#password").val() == "") {
+			$("#account-password-errors").append("Password cannot be blank.");
+			invalidInput = true;
+		}
+
+		return invalidInput;
+	};
+
+	var checkForInvalidLoginInput = function() {
+		var invalidInput = false;
+
+		if ($("#email").val() == "") {
+			$("#login-email-errors").append("Email cannot be blank.");
+			invalidInput = true;
+		}
+
+		if ($("#password").val() == "") {
+			$("#login-password-errors").append("Password cannot be blank.");
+			invalidInput = true;
+		}
+
+		return invalidInput;
+	};
 });
