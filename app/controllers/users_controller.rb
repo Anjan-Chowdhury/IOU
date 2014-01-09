@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 	def create
 		params[:user][:name] = params[:user][:name].downcase
 		@user = User.new(params[:user])
+		@user.guest = false
 
 		if @user.save
 			current_user.move_to(@user)

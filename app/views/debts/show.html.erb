@@ -18,8 +18,7 @@ Paid to: <%= @debt.debtor_name %>
 <div id="email-status">
 </div>
 <% if current_user.guest? %>
-	<p><%= link_to "Create Account", new_user_url %> to save this bill.</p>
+	<p><%= link_to "Create Account", new_user_url %> to save this payment record.</p>
 <% end %>
-<br>
-<br>
-<%= link_to "Back to index", root_url %>
+
+<p><%= link_to "Back to index", root_url %></p>

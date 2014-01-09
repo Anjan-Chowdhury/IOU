@@ -50,5 +50,6 @@ class User < ActiveRecord::Base
 
   def move_to(user)
     bills.update_all(user_id: user.id)
+    credits.update_all(creditor_id: user.id)
   end
 end

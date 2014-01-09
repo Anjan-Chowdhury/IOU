@@ -39,6 +39,13 @@ class BillsController < ApplicationController
 
 	def edit
 		@bill = Bill.find(params[:id])
+
+		if current_user == @bill.user
+			render :edit
+		else
+			flash[:notice] = "Login required to edit bill."
+			redirect_to login_url
+		end
 	end
 
 	def update
@@ -49,7 +56,13 @@ class BillsController < ApplicationController
 		@bill = Bill.find(params[:id])
 		@guests = @bill.guests
 		@debts = @bill.debts
-		render :show
+
+		if current_user == @bill.user
+			render :show
+		else
+			flash[:notice] = "Login required to edit bill."
+			redirect_to login_url
+		end
 	end
 
 	def billconfirmation

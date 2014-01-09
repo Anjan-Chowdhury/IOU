@@ -25,7 +25,13 @@ class DebtsController < ApplicationController
 
 	def show
 		@debt = Debt.find(params[:id])
-		render :show
+
+		if current_user == @debt.creditor
+			render :show
+		else
+			flash[:notice] = "Please log in."
+			redirect_to login_url
+		end
 	end
 
 	def paymentconfirmation
