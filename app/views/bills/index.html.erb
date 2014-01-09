@@ -1,8 +1,10 @@
 <h1>Bills Index</h1>
 
 <% @bills.each do |bill| %>
-	<%= link_to "Bill #{ bill.id }", bill_url(bill) %>
-	<br>
+	<p>
+		<b><%= bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>:</b> Bill <%= bill.id %>
+	  <%= link_to "#{ bill.name }", bill_url(bill) %> <%= button_to "Edit Bill #{bill.id}", edit_bill_url(bill), :class => "btn btn-warning" %>
+  </p>
 <% end %>
 
 <p><%= link_to "Back to home page", root_url %></p>

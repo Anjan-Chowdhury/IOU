@@ -7,9 +7,10 @@
   <p>You have no bills.</p>
 <% else %>
 	<% @bills.each do |bill| %>
-		<ul>
-		<li><%= link_to "Bill ##{bill.id}", bill_url(bill) %></li>
-		</ul>
+		<p>
+			<b><%= bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>:</b> Bill <%= bill.id %>
+		  <%= link_to "#{ bill.name }", bill_url(bill) %> <%= link_to "Edit Bill #{bill.id}", edit_bill_url(bill), :class => "btn btn-warning" %>
+	  </p>
 	<% end %>
 <% end %>
 
@@ -18,9 +19,10 @@
 	<p>You have no payments.</p>
 <% else %>
 	<% @payments.each do |payment| %>
-		<ul>
-		<li> <%= link_to "Payment ##{payment.id}", debt_url(payment) %></li>
-		</ul>
+		<p>
+			<b><%= payment.created_at.to_time.strftime('%B %e at %l:%M %p') %>:</b>
+		  <%= link_to "Payment #{ payment.id }", debt_url(payment) %>
+	  </p>
 	<% end %>
 <% end %>
 

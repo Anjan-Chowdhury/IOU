@@ -26,12 +26,12 @@ class Bill < ActiveRecord::Base
     
     guests_params.each do |guest|
       if guest.has_key?("amount_should_have_paid")
-	      new_guest = Player.new(guest[:name], guest[:amount_paid].to_i, guest[:amount_should_have_paid].to_i)
-	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :amount_paid => guest[:amount_paid].to_i, :amount_should_have_paid => guest[:amount_should_have_paid].to_i)
+	      new_guest = Player.new(guest[:name], guest[:amount_paid].to_f, guest[:amount_should_have_paid].to_f)
+	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :amount_paid => guest[:amount_paid].to_f, :amount_should_have_paid => guest[:amount_should_have_paid].to_f)
       else
-  	    amount_should_have_paid = bill_total / guests_params.length
-        new_guest = Player.new(guest[:name], guest[:amount_paid].to_i, amount_should_have_paid)
-	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :amount_paid => guest[:amount_paid].to_i, :amount_should_have_paid => amount_should_have_paid)
+  	    amount_should_have_paid = bill_total / guests_params.length.to_f
+        new_guest = Player.new(guest[:name], guest[:amount_paid].to_f, amount_should_have_paid)
+	      Guest.create!(:name => guest[:name], :bill_id => bill_id, :amount_paid => guest[:amount_paid].to_f, :amount_should_have_paid => amount_should_have_paid)
 	    end
       guests_array.push(new_guest)
     end
@@ -68,7 +68,7 @@ class Bill < ActiveRecord::Base
     guests_payment = 0
     
     guests_params.each do |guest|
-      guests_payment += guest[:amount_paid].to_i
+      guests_payment += guest[:amount_paid].to_f
     end
     
     guests_payment == bill_total
@@ -85,10 +85,10 @@ class Player
   end
   
   def bill_difference
-    (@amount_paid - @amount_should_have_paid).to_f
+    @amount_paid - @amount_should_have_paid
   end
   
   def amount_owes
-    (@amount_should_have_paid - @amount_paid).to_f
+    @amount_should_have_paid - @amount_paid
   end
 end

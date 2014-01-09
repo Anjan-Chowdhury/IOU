@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120020555) do
+ActiveRecord::Schema.define(:version => 20140109204750) do
 
   create_table "bills", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "amount"
+    t.float    "amount"
     t.integer  "user_id"
   end
 
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(:version => 20131120020555) do
   create_table "guests", :force => true do |t|
     t.integer  "user_id"
     t.integer  "bill_id"
-    t.integer  "amount_paid"
-    t.integer  "amount_should_have_paid"
+    t.float    "amount_paid"
+    t.float    "amount_should_have_paid"
     t.string   "name"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(:version => 20131120020555) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "session_token"
-    t.integer  "money_lent"
-    t.integer  "money_borrowed"
+    t.float    "money_lent"
+    t.float    "money_borrowed"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.boolean  "guest"

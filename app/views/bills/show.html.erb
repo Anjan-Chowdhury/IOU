@@ -8,16 +8,16 @@ Bill Name: <%= @bill.name %>
 	Bill Description: <%= @bill.description %>
 <% end %>
 <br>
-Bill Amount: $<%= @bill.amount %>
+Bill Amount: $<%= sprintf( "%0.02f", @bill.amount) %>
 <br>
 <br>
 <% @guests.each do |guest| %>
-	<%= guest.name %> paid $<%= guest.amount_paid %>. <%= guest.name %> should have paid $<%= guest.amount_should_have_paid %>.
+	<%= guest.name %> paid $<%= sprintf( "%0.02f", guest.amount_paid) %>. <%= guest.name %> should have paid $<%= sprintf( "%0.02f", guest.amount_should_have_paid) %>.
 	<br>
 <% end %>
 <br>
 <% @debts.each do |debt| %>
-	<%= debt.debtor_name %> <%= debt.debtor_name == "You" ? "owe" : "owes" %> <%= debt.creditor_name == "You" ? "you" : debt.creditor_name %> $<%= debt.amount %>.
+	<%= debt.debtor_name %> <%= debt.debtor_name == "You" ? "owe" : "owes" %> <%= debt.creditor_name == "You" ? "you" : debt.creditor_name %> $<%= sprintf( "%0.02f", debt.amount) %>.
 	<br>
 <% end %>
 <br>
