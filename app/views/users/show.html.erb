@@ -24,10 +24,10 @@
 	<% end %>
 <% end %>
 
-<br>
-<%= link_to "Return to Index Page", root_url %>
-<br>
-<br>
+<h3>Find Friends</h3>
+<textarea>Input friend email</textarea>
+
+<p><%= link_to "Return to Index Page", root_url %></p>
 <% if logged_in? %>
-	<%= button_to "Log out", session_url, :method => "delete", class: "btn btn-danger" %>
+	<p><%= button_to "Log out", session_url, :method => "delete", class: "btn btn-danger" %></p>
 <% end %>

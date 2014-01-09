@@ -1,6 +1,6 @@
 Bill #<%= @bill.id %> Details
 
-Created by: <%= @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+Created by: <%= @bill.user.name.nil? ? "Guest User" : @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
 
 Bill Name: <%= @bill.name %>
 

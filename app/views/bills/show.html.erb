@@ -1,10 +1,6 @@
 <h2>Bill #<%= @bill.id %> Details</h2>
 <br>
-Created by: <% if @bill.user.name.nil? %>
-Guest User 
-<% else %>
-<%= @bill.user.name %>
-<% end %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+Created by: <%= @bill.user.name.nil? ? "Guest User" : @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
 <br>
 Bill Name: <%= @bill.name %>
 <br>
@@ -21,7 +17,7 @@ Bill Amount: $<%= @bill.amount %>
 <% end %>
 <br>
 <% @debts.each do |debt| %>
-	<%= debt.debtor_name %> <%= debt.debtor_name == "You" ? "owe" : "owes" %> <%= debt.creditor_name %> $<%= debt.amount %>.
+	<%= debt.debtor_name %> <%= debt.debtor_name == "You" ? "owe" : "owes" %> <%= debt.creditor_name == "You" ? "you" : debt.creditor_name %> $<%= debt.amount %>.
 	<br>
 <% end %>
 <br>
@@ -37,12 +33,6 @@ Bill Amount: $<%= @bill.amount %>
 
 <% if current_user.guest? %>
 	<p><%= link_to "Create Account", new_user_url %> to save this bill.</p>
-	Bill user: <%= @bill.user.id %>
-	<br>
-	Current user: <%= current_user.id %>
-	<% current_user.bills.each do |bill| %>
-		<br>Bill id: <%= bill.id %>
-	<% end %>
 <% end %>
 
 <p><%= link_to "Back to the index", root_url %></p>

@@ -5,7 +5,7 @@
   </head>
   <body>
     <h2>Bill #<%= @bill.id %> Details</h2>
-    Created by: <%= @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+    Created by: <%= @bill.user.name.nil? ? "Guest User" : @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
     <p>Bill Name: <%= @bill.name %></p>
     <% unless @bill.description.blank? %>
       <p>Bill Description: <%= @bill.description %></p>

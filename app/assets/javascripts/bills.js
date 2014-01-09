@@ -17,22 +17,26 @@ $(function() {
 
 	$("#send-bill-confirmation").click(function(e) {
 		e.preventDefault();
+		$("#send-bill-confirmation").attr("disabled", true);
 		$("#email-status").html(JST['emails/sending_email']({}));
 		var confirmationEmail = $.post( "/bills/" + $(this).data("id") + "/billconfirmation.json", 
 							{email: $("#confirmation-email-address").val() }, 
 							function( data ) {
 								$("#email-status").html("<b>Email sent!</b>");
+								$("#send-bill-confirmation").removeAttr('disabled');
 								$("#confirmation-email-address").val("");
 							});
 	});
 
 	$("#send-payment-email").click(function(e) {
 		e.preventDefault();
+		$("#send-payment-email").attr("disabled", true);
 		$("#email-status").html(JST['emails/sending_email']({}));
 		var confirmationEmail = $.post( "/debts/" + $(this).data("id") + "/paymentconfirmation.json", 
 							{email: $("#confirmation-email-address").val() }, 
 							function( data ) {
 								$("#email-status").html("<b>Email sent!</b>");
+								$("#send-payment-email").removeAttr('disabled');
 								$("#confirmation-email-address").val("");
 							});
 	});
