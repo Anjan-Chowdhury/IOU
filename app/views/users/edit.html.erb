@@ -1,1 +1,16 @@
-<h1>Edit Account Information, <%= @user.name %></h1>
+<h1>Edit Account Information</h1>
+
+<form action="<%= users_url %>" method="post">
+	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+	<input type="text" id="name" name="user[name]" value="<%= @user.name %>" placeholder="name">
+	<br>
+	<input type="text" id="email" name="user[email]" value="<%= @user.email %>" placeholder="email">
+	<br>
+	<input type="password" id="password" name="user[password]" placeholder="password">
+	<br>
+	<input type="submit" class="btn btn-success" value="Create Account">
+	<input name="_method" type="hidden" value="put">
+</form>
+
+<p><%= link_to "Back to Index", root_url %></p>

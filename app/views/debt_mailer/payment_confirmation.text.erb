@@ -1,5 +1,5 @@
 Payment #<%= @debt.id %>
-Created: <%= @debt.created_at %>
+Created: <%= @debt.created_at.to_time.strftime('%B %e at %l:%M %p') %>
 Amount: $<%= @debt.amount %>
 Memo: <%= @debt.memo %>
 Paid by: <%= @debt.creditor_name %>

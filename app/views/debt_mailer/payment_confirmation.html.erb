@@ -5,7 +5,7 @@
   </head>
   <body>
     <h2>Payment #<%= @debt.id %></h2>
-	Created: <%= @debt.created_at %>
+	Created: <%= @debt.created_at.to_time.strftime('%B %e at %l:%M %p') %>
 	<p>Amount: $<%= @debt.amount %></p>
 	<p>Memo: <%= @debt.memo %></p>
 	<p>Paid by: <%= @debt.creditor_name %></p>

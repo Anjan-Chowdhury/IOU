@@ -1,4 +1,6 @@
 <h2>Payment #<%= @debt.id %></h2>
+Created: <%= @debt.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+<br>
 Amount: $<%= @debt.amount %>
 <br>
 Memo: <%= @debt.memo %>
@@ -15,6 +17,9 @@ Paid to: <%= @debt.debtor_name %>
 <br>
 <div id="email-status">
 </div>
+<% if current_user.guest? %>
+	<p><%= link_to "Create Account", new_user_url %> to save this bill.</p>
+<% end %>
 <br>
 <br>
 <%= link_to "Back to index", root_url %>

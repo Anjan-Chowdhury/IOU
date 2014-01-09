@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+	include ApplicationHelper
+	before_filter :require_login, :only => [:edit, :show]
+
 	def new
 		@user = User.new
 		render :new
@@ -9,6 +12,7 @@ class UsersController < ApplicationController
 		@user = User.new(params[:user])
 
 		if @user.save
+			current_user.move_to(@user)
 			flash[:notice] = "Account created. Please login."
 			redirect_to new_session_url
 		else
@@ -26,7 +30,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find_by_name(params[:id])
+		@user = current_user
 		@bills = @user.bills
 		@payments = Debt.where(:creditor_id => @user.id, :is_a_payment => true)
 		render :show

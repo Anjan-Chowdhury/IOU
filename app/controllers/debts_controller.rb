@@ -3,8 +3,6 @@ class DebtsController < ApplicationController
 	
 	def create
     @debt = Debt.new(params[:debt])
-    print "###PARAMS DEBT"
-    print params[:debt]
     @debt.is_a_payment = true
     @debt.creditor_id = current_user.id
     @debt.creditor_name = current_user.guest == true ? "You" : current_user.name

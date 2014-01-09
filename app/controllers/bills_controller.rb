@@ -1,9 +1,9 @@
 class BillsController < ApplicationController
 	include ApplicationHelper
-	before_filter :require_login, :except => [:new]
+	before_filter :require_login, :only => [:index]
 
 	def index
-		@bills = Bill.all
+		@bills = current_user.bills
 		render :index
 	end
 
@@ -35,6 +35,14 @@ class BillsController < ApplicationController
 			flash[:notice] = "Error with your bill."
 			render :new
 		end
+	end
+
+	def edit
+		@bill = Bill.find(params[:id])
+	end
+
+	def update
+
 	end
 
 	def show

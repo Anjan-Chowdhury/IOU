@@ -15,7 +15,7 @@
       <p><%= guest.name %> paid $<%= guest.amount_paid %>. <%= guest.name %> should have paid $<%= guest.amount_should_have_paid %>.</p>
     <% end %>
     <% @debts.each do |debt| %>
-      <p><%= debt.debtor_name %> owes <%= debt.creditor_name %> $<%= debt.amount %>.</p>
+      <p><%= debt.debtor_name %> <%= debt.debtor_name == "You" ? "owe" : "owes" %> <%= debt.creditor_name %> $<%= debt.amount %>.</p>
     <% end %>
     <br>
     <p>Create an account to use advanced features.</p>

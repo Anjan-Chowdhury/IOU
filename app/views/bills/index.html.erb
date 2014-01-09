@@ -1,10 +1,8 @@
-<h1>Bill Index Page</h1>
+<h1>Bills Index</h1>
 
 <% @bills.each do |bill| %>
 	<%= link_to "Bill #{ bill.id }", bill_url(bill) %>
 	<br>
 <% end %>
 
-<br>
-
-<%= link_to "Back to home page", root_url %>
+<p><%= link_to "Back to home page", root_url %></p>

@@ -34,12 +34,15 @@ Bill Amount: $<%= @bill.amount %>
 <div id="email-status">
 </div>
 <br>
-<br>
 
-<%= link_to "Back to the index", root_url %>
-<br>
-<br>
-<% if current_user.nil? %>
-	<%= link_to "Create account", new_user_url %> or <%= link_to "Login", new_session_url %> to save your bill information!
+<% if current_user.guest? %>
+	<p><%= link_to "Create Account", new_user_url %> to save this bill.</p>
+	Bill user: <%= @bill.user.id %>
+	<br>
+	Current user: <%= current_user.id %>
+	<% current_user.bills.each do |bill| %>
+		<br>Bill id: <%= bill.id %>
+	<% end %>
 <% end %>
-<br>
+
+<p><%= link_to "Back to the index", root_url %></p>
