@@ -9,7 +9,7 @@
 	<% @bills.each do |bill| %>
 		<p>
 			<b><%= bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>:</b> Bill <%= bill.id %>
-		  <%= link_to "#{ bill.name }", bill_url(bill) %> <%= link_to "Edit Bill #{bill.id}", edit_bill_url(bill), :class => "btn btn-warning" %>
+		  <%= link_to "#{ bill.name }", bill_url(bill) %> <%= link_to "Edit Bill #{bill.id}", edit_bill_url(bill), :class => "btn btn-warning" %> <button class="btn btn-primary">Mark as Paid</button>
 	  </p>
 	<% end %>
 <% end %>
@@ -28,6 +28,7 @@
 
 <h3>Find Friends</h3>
 <textarea>Input friend email</textarea>
+<button class="btn btn-primary">Send Friend Request</button>
 
 <p><%= link_to "Return to Index Page", root_url %></p>
 <% if logged_in? %>
