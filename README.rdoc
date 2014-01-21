@@ -1,2 +1,4 @@
 == IOU: A Bill-Splitting App
+
+Check it out: {http://ioyou.herokuapp.com}[http://ioyou.herokuapp.com]
 This app is built with Ruby, Rails, JavaScript/jQuery, and Twitter Bootstrap. It improves on one of my previous projects: billsplit/Split Your Bill.
